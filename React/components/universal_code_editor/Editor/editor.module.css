@@ -1,0 +1,159 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--gray);
+  background-color: var(--background-dracula);
+  height: 100% !important;
+  overflow: hidden;
+  scrollbar-color: var(--gray) var(--background-dracula);
+  scrollbar-width: thin;
+}
+
+.editorHeader {
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid var(--gray);
+  background-color: inherit;
+}
+
+.editorHeaderBtn {
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+  padding: 5px 10px;
+  color: #fff;
+}
+
+.editorHeaderBtn:hover {
+  background-color: var(--primary-main);
+}
+
+.editorContent {
+  height: inherit;
+  overflow-y: auto;
+}
+
+.active {
+  background-color: var(--primary-main);
+}
+
+.consoleText {
+  padding: 0 16px;
+  color: var(--text-color-bright);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.hebrewText {
+  direction: rtl;
+  text-align: right;
+}
+
+.codeField {
+  margin: 0.5em 0px;
+  border-radius: 0.3em;
+  background-color: var(--background-main);
+  padding: 1em;
+  overflow: auto;
+  color: var(--text-color-bright);
+  line-height: 1.5;
+  hyphens: none;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-break: normal;
+  word-spacing: normal;
+  overflow-wrap: normal;
+  tab-size: 4;
+}
+
+.codeEditor {
+  border: 1px solid var(--gray);
+  max-height: 100%;
+  direction: ltr;
+  text-align: left;
+}
+
+.editorTab {
+  padding: 0 16px;
+  max-width: 100%;
+}
+
+.tests {
+  padding: 0 16px;
+  max-width: 100%;
+  text-align: right;
+}
+
+.answer {
+  padding: 0 16px;
+  max-width: 100%;
+  color: var(--text-color-bright);
+  direction: ltr;
+  text-align: right;
+  text-align: left;
+}
+
+.editorFooter {
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  border: 1px solid var(--gray);
+  background-color: var(--background-dracula);
+  padding: 5px 0;
+}
+
+.editorFooterBtnWrapper {
+  display: flex;
+  position: relative;
+  gap: 15px;
+}
+.editorFooterNextBtn,
+.editorFooterPrevBtn {
+  cursor: pointer;
+  border: none;
+  background-color: ghostwhite;
+  padding: 10px 20px;
+}
+
+.editorFooterRefreshBtn {
+  position: absolute;
+  top: 50%;
+  left: -50px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.resultIframe {
+  margin-top: auto;
+  width: 100%;
+}
+
+.testsWrapper {
+  max-width: 50px;
+}
+
+.pre {
+  max-width: 100%; /* Ограничение ширины */
+  overflow-x: auto; /* Горизонтальная прокрутка */
+  white-space: pre-wrap; /* Перенос текста */
+  word-wrap: break-word; /* Перенос длинных слов */
+  color: var(--text-color-bright);
+  direction: ltr;
+  text-align: left;
+  word-break: break-all;
+}
