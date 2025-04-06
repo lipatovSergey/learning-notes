@@ -51,3 +51,35 @@ const noHomework = Object.create(homework);
 noHomework.study(); // Our homework Math
 // Но если объект не имеет своего свойства указанного в this то поиск продолжиться дальше по цепочке прототипов
 // в случае с noHomework если бы у homework не было свойства topic то noHomework.study(); вывело бы Our homework undefined
+
+const counter = {
+	count: 0,
+	incrementNormal: function () {
+		// В обычной функции 'this' ссылается на объект, вызвавший метод (counter)
+		setTimeout(function () {
+			this.count++; // 'this' здесь будет ссылаться на глобальный объект (window) или undefined (в strict mode)
+			console.log("Normal function:", this.count);
+		}, 1000);
+	},
+	incrementArrow: function () {
+		// В обычной функции 'this' ссылается на объект, вызвавший метод (counter)
+		setTimeout(() => {
+			this.count++; // 'this' здесь лексически захватывается из внешней функции (incrementArrow), поэтому ссылается на counter
+			console.log("Arrow function:", this.count);
+		}, 1500);
+	},
+	incrementNormalFixed: function () {
+		console.log("this: ", this);
+		const self = this; // Захватываем 'this' во внешней области видимости
+		setTimeout(function () {
+			self.count++; // Теперь 'self' корректно ссылается на counter
+			console.log("Normal function (fixed):", self.count);
+		}, 2000);
+	},
+};
+
+counter.incrementNormal(); // Через 1 секунду: Normal function: NaN (или 1 в не strict mode)
+counter.incrementArrow(); // Через 1.5 секунды: Arrow function: 1
+counter.incrementNormalFixed(); // Через 2 секунды: Normal function (fixed): 2
+
+console.log("Initial count:", counter.count); // Выведет: Initial count: 0
