@@ -30,3 +30,24 @@ hiScreamer.say(); // Hello
 // Важный момент. В нестрогом режиме вызов функции использующей .this на верхнем уровне вызовет ошибкую. Так как this будет undefined. Поэтопу для примера выше я использовал объекты.
 // screamWord(); - такой вызов приведёт к ошибке Cannot read properties of undefined (reading 'word')
 // в нестрогом режиме this в таком случае будет ссылаться на Window или global (Node.js)
+
+// this и прототипизация
+export let thisAndPrototypes;
+// В отличии от многих ООП языков программирования благодаря динамическому контексту this. Он будет ссылаться на объект в котором вызывается, а не на объект в котором был создан.
+const homework = {
+	topic: "Math",
+	study() {
+		console.log(`Our homework ${this.topic}`);
+	},
+};
+const jsHomework = Object.create(homework);
+const englishHomework = Object.create(homework);
+englishHomework.topic = "English";
+jsHomework.topic = "JS";
+jsHomework.study(); // Our homework JS
+englishHomework.study(); // Our homework English
+// хотя у homework есть свойство topic, this из study() будет ссылаться на тот объект где была вызванна, а не созданна.
+const noHomework = Object.create(homework);
+noHomework.study(); // Our homework Math
+// Но если объект не имеет своего свойства указанного в this то поиск продолжиться дальше по цепочке прототипов
+// в случае с noHomework если бы у homework не было свойства topic то noHomework.study(); вывело бы Our homework undefined
