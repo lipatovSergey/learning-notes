@@ -1,8 +1,8 @@
 // greeting тут является фабрикой.
 function greeting(msg) {
-	return function who(name) {
-		console.log(`${msg}, ${name}!`);
-	};
+  return function who(name) {
+    console.log(`${msg}, ${name}!`);
+  };
 }
 var hello = greeting("Hello");
 var howdy = greeting("Howdy");
@@ -14,12 +14,12 @@ howdy("Grant"); // Howdy, Grant!
 // Важно понимать! Это не просто копия значения а именно ссылка на него.
 
 function createCounter(initialValue) {
-	let count = initialValue; // Начальная сумма в ячейке
-	function increment() {
-		count = count + 1; // Увеличение суммы
-		console.log(count);
-	}
-	return increment; // Банк выдает вам вашу ячейку
+  let count = initialValue; // Начальная сумма в ячейке
+  function increment() {
+    count = count + 1; // Увеличение суммы
+    console.log(count);
+  }
+  return increment; // Банк выдает вам вашу ячейку
 }
 let counterA = createCounter(10); // Вы получаете ячейку, начинающуюся с 10
 let counterB = createCounter(5); // Другой человек получает ячейку с 5
@@ -32,12 +32,12 @@ counterB(); // Другой человек кладет в свою ячейку
 
 // Пример поясняющий что при замыкании в новой функции храниться именно ссылка на внешнюю переменную с переданным в неё при инициализации значением, а не просто значение (мгновенный снимок)
 function outer() {
-	let message = "Привет";
-	function inner() {
-		console.log(message);
-	}
-	message = "Пока"; // Изменяем значение переменной ДО возврата inner
-	return inner;
+  let message = "Привет";
+  function inner() {
+    console.log(message);
+  }
+  message = "Пока"; // Изменяем значение переменной ДО возврата inner
+  return inner;
 }
 let myFunc = outer();
 myFunc(); // "Пока"
@@ -45,8 +45,8 @@ myFunc(); // "Пока"
 
 // Внешняя область видимости необязана быть функцией.Важно лишь то, чтобы во внешней области видимости была как минимум одна переменная, к которой происходит обращение из внутренней функции. Например:
 for (let [idx, btn] of buttons.entries()) {
-	btn.addEventListener("click", function onClick() {
-		console.log(`Clicked on button (${idx})!`);
-	});
+  btn.addEventListener("click", function onClick() {
+    console.log(`Clicked on button (${idx})!`);
+  });
 }
 // Так как в объявлении цикла используется let, то каждый итерратор получает новые переменные idx и btn. С блоковой (локально) областью видимости. Внутренняя функци замыкается по переменной idx, тоесть каждая кнопка получает свой обработчик со своим значение idx.
